@@ -11,19 +11,19 @@ export default function App() {
 
   const bottomRef = useRef(null);
 
-  useEffect(() => {
-    const savedMessages = localStorage.getItem("foodie_chat");
-
-    const welcomeMessage = {
-      sender: "bot",
-      text: `Welcome to FoodieBot
+  const welcomeMessage = {
+    sender: "bot",
+    text: `Welcome to FoodieBot
 
 Select 1 to Place an order
 Select 99 to checkout order
 Select 98 to see order history
 Select 97 to see current order
 Select 0 to cancel order`
-    };
+  };
+
+  useEffect(() => {
+    const savedMessages = localStorage.getItem("foodie_chat");
 
     if (savedMessages) {
       const parsed = JSON.parse(savedMessages);
@@ -47,11 +47,11 @@ Select 0 to cancel order`
     const params = new URLSearchParams(window.location.search);
     const reference = params.get("reference");
 
-    const alreadyVerified = sessionStorage.getItem(
-      `verified_${reference}`
-    );
+    if (!reference) return;
 
-    if (reference && !alreadyVerified) {
+    const alreadyVerified = sessionStorage.getItem(`verified_${reference}`);
+
+    if (!alreadyVerified) {
       sessionStorage.setItem(`verified_${reference}`, "true");
       verifyPayment(reference);
     }
@@ -66,7 +66,9 @@ Select 0 to cancel order`
 
     if (!userInput) return;
 
-    addMessage("user", userInput);
+    const displayText = userInput === "start_order" ? "1" : userInput;
+
+    addMessage("user", displayText);
     setInput("");
     setLoading(true);
 
@@ -86,8 +88,6 @@ Select 0 to cancel order`
       setLoading(false);
     }
   };
-
-
 
   const startPayment = async () => {
     const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -140,21 +140,9 @@ Select 0 to cancel order`
 
   const resetChat = () => {
     localStorage.removeItem("foodie_chat");
-
-    setMessages([
-      {
-        sender: "bot",
-        text: `Welcome to FoodieBot
-
-Select 1 to Place an order
-Select 99 to checkout order
-Select 98 to see order history
-Select 97 to see current order
-Select 0 to cancel order`
-      }
-    ]);
-
+    setMessages([welcomeMessage]);
     setShowPayment(false);
+    setEmail("");
   };
 
   const quickSend = (value) => {
@@ -173,7 +161,6 @@ Select 0 to cancel order`
           <button onClick={resetChat} className="reset-btn">
             Reset
           </button>
-
         </div>
 
         <div className="chat-body">
@@ -210,9 +197,7 @@ Select 0 to cancel order`
         )}
 
         <div className="quick-actions">
-          <button onClick={() => {
-            quickSend("reset_menu");
-          }}>🍽️ Order</button>
+          <button onClick={() => quickSend("start_order")}>🍽️ Order</button>
           <button onClick={() => quickSend("97")}>🧾 Current</button>
           <button onClick={() => quickSend("99")}>💳 Checkout</button>
           <button onClick={() => quickSend("98")}>📜 History</button>
