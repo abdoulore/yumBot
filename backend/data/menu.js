@@ -18,41 +18,56 @@ export const menuItems = [
   {
     id: 3,
     name: "Amala + Ewedu + Gbegiri",
-    price: 2200,
     options: {
-      protein: ["Beef", "Goat Meat", "Assorted"]
+      protein: [
+        { name: "Beef", price: 2200 },
+        { name: "Goat Meat", price: 2800 },
+        { name: "Assorted", price: 3200 }
+      ]
     }
   },
   {
     id: 4,
     name: "Pounded Yam + Egusi",
-    price: 3500,
     options: {
-      protein: ["Chicken", "Fish", "Goat Meat"]
+      protein: [
+        { name: "Chicken", price: 3500 },
+        { name: "Fish", price: 3800 },
+        { name: "Goat Meat", price: 4200 }
+      ]
     }
   },
   {
     id: 5,
     name: "Suya",
-    price: 2000,
     options: {
-      size: ["Small", "Medium", "Large"]
+      portion: [
+        { name: "5 sticks", price: 2000 },
+        { name: "10 sticks", price: 3500 },
+        { name: "15 sticks", price: 5000 }
+      ]
     }
   },
   {
     id: 6,
     name: "Shawarma",
-    price: 2500,
     options: {
-      type: ["Chicken", "Beef", "Mixed"]
+      type: [
+        { name: "Chicken", price: 2500 },
+        { name: "Beef", price: 2800 },
+        { name: "Mixed", price: 3200 }
+      ]
     }
   },
   {
     id: 7,
     name: "Pepper Soup",
-    price: 3000,
     options: {
-      type: ["Catfish", "Goat Meat", "Chicken"]
+      type: [
+        { name: "Catfish", price: 3000 },
+        { name: "Goat Meat", price: 3500 },
+        { name: "Chicken", price: 2800 }
+      ]
     }
   }
 ];
