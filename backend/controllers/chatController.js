@@ -127,7 +127,7 @@ export const handleChat = async (req, res) => {
 
         const selectedItem = menuItems.find((item) => item.id === Number(input));
 
-        if (selectedItem && stage === "ordering") {
+        if (selectedItem) {
             let order = await Order.findOne({
                 sessionId: req.sessionId,
                 status: "pending"
