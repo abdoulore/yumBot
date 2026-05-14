@@ -13,7 +13,7 @@ export default function App() {
 
   const welcomeMessage = {
     sender: "bot",
-    text: `Welcome to FoodieBot
+    text: `Welcome to YumBot
 
 Select 1 to Place an order
 Select 99 to checkout order

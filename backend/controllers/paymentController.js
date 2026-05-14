@@ -26,7 +26,7 @@ export const initializePayment = async (req, res) => {
         email,
         amount: order.total * 100,
         reference,
-        callback_url: `${process.env.FRONTEND_URL}/payment/verify?reference=${reference}`
+        callback_url: `${process.env.FRONTEND_URL}?reference=${reference}`
       },
       {
         headers: {

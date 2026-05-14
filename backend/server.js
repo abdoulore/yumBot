@@ -27,7 +27,7 @@ app.use("/order", orderRoutes);
 app.use("/payment", paymentRoutes);
 
 app.get("/", (req, res) => {
-  res.json({ message: "FoodieBot API is running" });
+  res.json({ message: "Yumbot API is running" });
 });
 
 mongoose.connect(process.env.MONGO_URI)

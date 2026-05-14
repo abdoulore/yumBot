@@ -1,7 +1,7 @@
 import Order from "../models/Order.js";
 import { menuItems } from "../data/menu.js";
 
-const welcomeMessage = `Welcome to FoodieBot
+const welcomeMessage = `Welcome to Yumbot
 
 Select 1 to Place an order
 Select 99 to checkout order
