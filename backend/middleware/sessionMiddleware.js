@@ -10,20 +10,24 @@ export const sessionMiddleware = async (req, res, next) => {
 
       res.cookie("foodie_session", sessionId, {
         httpOnly: true,
-        sameSite: "lax",
+        secure: true,
+        sameSite: "none",
         maxAge: 1000 * 60 * 60 * 24 * 30
       });
+    }
 
-      await Session.create({ sessionId });
-    } else {
-      const existingSession = await Session.findOne({ sessionId });
+    let session = await Session.findOne({ sessionId });
 
-      if (!existingSession) {
-        await Session.create({ sessionId });
-      }
+    if (!session) {
+      session = await Session.create({
+        sessionId,
+        stage: "main"
+      });
     }
 
     req.sessionId = sessionId;
+    req.userSession = session;
+
     next();
   } catch (error) {
     next(error);

@@ -5,6 +5,10 @@ const sessionSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
+  },
+  stage: {
+    type: String,
+    default: "main"
   }
 }, { timestamps: true });
 
