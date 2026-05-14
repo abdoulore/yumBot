@@ -210,7 +210,9 @@ Select 0 to cancel order`
         )}
 
         <div className="quick-actions">
-          <button onClick={() => quickSend("menu")}>🍽️ Order</button>
+          <button onClick={() => {
+            quickSend("reset_menu");
+          }}>🍽️ Order</button>
           <button onClick={() => quickSend("97")}>🧾 Current</button>
           <button onClick={() => quickSend("99")}>💳 Checkout</button>
           <button onClick={() => quickSend("98")}>📜 History</button>

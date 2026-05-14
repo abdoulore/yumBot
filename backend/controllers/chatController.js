@@ -49,8 +49,9 @@ export const handleChat = async (req, res) => {
 
         if (
             (input === "1" && stage === "main") ||
-            input.toLowerCase() === "menu"
+            input === "reset_menu"
         ) {
+
             userStages[req.sessionId] = "ordering";
 
             return res.json({
@@ -59,7 +60,6 @@ export const handleChat = async (req, res) => {
         }
 
         if (input === "97") {
-            userStages[req.sessionId] = "main";
 
             const order = await Order.findOne({
                 sessionId: req.sessionId,
